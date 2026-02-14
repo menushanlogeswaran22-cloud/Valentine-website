@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 100px;
+      font-size: 40px;
+      color: white;
+    }
+
+    .buttons {
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+      font-size: 20px;
+    }
+
+    #noBtn {
+      background-color: #555;
+      color: white;
+      font-size: 20px;
+    }
+
+    .celebration {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      color: white;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hearts {
+      position: absolute;
+      font-size: 30px;
+      animation: floatUp 3s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Will You Be My Valentine? 💖</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😢</button>
+  </div>
+
+  <div class="celebration" id="celebration">
+    💖 YAYYYYY 💖
+  </div>
+
+  <script>
+    let yesBtn = document.getElementById("yesBtn");
+    let noBtn = document.getElementById("noBtn");
+    let celebration = document.getElementById("celebration");
+
+    let yesSize = 20;
+    let noSize = 20;
+
+    noBtn.addEventListener("click", function() {
+      yesSize += 10;
+      noSize -= 3;
+
+      yesBtn.style.fontSize = yesSize + "px";
+      noBtn.style.fontSize = noSize + "px";
+
+      console.log("They clicked NO");
+    });
+
+    yesBtn.addEventListener("click", function() {
+      console.log("They clicked YES");
+
+      celebration.style.display = "flex";
+
+      // Create floating hearts
+      for (let i = 0; i < 30; i++) {
+        let heart = document.createElement("div");
+        heart.className = "hearts";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(heart);
+      }
+    });
+  </script>
+
+</body>
+</html>
