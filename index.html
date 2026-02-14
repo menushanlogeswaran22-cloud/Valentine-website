@@ -2,19 +2,28 @@
 <html>
 <head>
   <title>Be My Valentine?</title>
+
   <style>
     body {
       text-align: center;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
       height: 100vh;
+      margin: 0;
       overflow: hidden;
     }
 
     h1 {
-      margin-top: 100px;
-      font-size: 40px;
+      margin-top: 60px;
+      font-size: 65px;
       color: white;
+    }
+
+    img {
+      width: 320px;
+      margin-top: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
 
     .buttons {
@@ -22,24 +31,23 @@
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 20px;
+      padding: 25px 60px;
+      font-size: 32px;
       border: none;
-      border-radius: 10px;
+      border-radius: 15px;
       cursor: pointer;
       transition: all 0.3s ease;
+      margin: 15px;
     }
 
     #yesBtn {
-      background-color: #ff4d6d;
+      background-color: #ff2e63;
       color: white;
-      font-size: 20px;
     }
 
     #noBtn {
-      background-color: #555;
+      background-color: #444;
       color: white;
-      font-size: 20px;
     }
 
     .celebration {
@@ -51,9 +59,11 @@
       display: none;
       justify-content: center;
       align-items: center;
-      font-size: 50px;
+      flex-direction: column;
+      font-size: 60px;
       color: white;
       animation: fadeIn 1s ease forwards;
+      background: rgba(0,0,0,0.6);
     }
 
     @keyframes fadeIn {
@@ -78,13 +88,16 @@
 
   <h1>Will You Be My Valentine? 💖</h1>
 
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+
   <div class="buttons">
-    <button id="yesBtn">Yes 💕</button>
-    <button id="noBtn">No 😢</button>
+    <button id="yesBtn">YES 💕</button>
+    <button id="noBtn">NO 😢</button>
   </div>
 
   <div class="celebration" id="celebration">
-    💖 YAYYYYY 💖
+    💖 SHE SAID YESSSS 💖
+    <div style="font-size:30px; margin-top:20px;">Best Day Ever 🥹</div>
   </div>
 
   <script>
@@ -92,12 +105,12 @@
     let noBtn = document.getElementById("noBtn");
     let celebration = document.getElementById("celebration");
 
-    let yesSize = 20;
-    let noSize = 20;
+    let yesSize = 32;
+    let noSize = 32;
 
     noBtn.addEventListener("click", function() {
-      yesSize += 10;
-      noSize -= 3;
+      yesSize += 15;
+      noSize -= 5;
 
       yesBtn.style.fontSize = yesSize + "px";
       noBtn.style.fontSize = noSize + "px";
@@ -110,8 +123,7 @@
 
       celebration.style.display = "flex";
 
-      // Create floating hearts
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 40; i++) {
         let heart = document.createElement("div");
         heart.className = "hearts";
         heart.innerHTML = "💖";
@@ -121,6 +133,20 @@
       }
     });
   </script>
+
+  <!-- Bottom signature -->
+  <p style="
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    opacity: 0.85;
+    font-family: Arial, sans-serif;
+  ">
+    by Menushan
+  </p>
 
 </body>
 </html>
