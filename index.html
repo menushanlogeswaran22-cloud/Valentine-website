@@ -15,29 +15,29 @@
 
     h1 {
       margin-top: 60px;
-      font-size: 65px;
+      font-size: 85px; /* BIGGER TITLE */
       color: white;
     }
 
     img {
-      width: 320px;
-      margin-top: 20px;
+      width: 340px;
+      margin-top: 25px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
 
     .buttons {
-      margin-top: 50px;
+      margin-top: 70px;
     }
 
     button {
-      padding: 25px 60px;
-      font-size: 32px;
+      padding: 35px 90px; /* BIGGER BUTTON SIZE */
+      font-size: 40px; /* BIGGER TEXT */
       border: none;
-      border-radius: 15px;
+      border-radius: 18px;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin: 15px;
+      margin: 30px; /* MORE SPACE BETWEEN BUTTONS */
     }
 
     #yesBtn {
@@ -60,10 +60,11 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      font-size: 60px;
+      font-size: 70px;
       color: white;
       animation: fadeIn 1s ease forwards;
       background: rgba(0,0,0,0.6);
+      text-align: center;
     }
 
     @keyframes fadeIn {
@@ -73,7 +74,7 @@
 
     .hearts {
       position: absolute;
-      font-size: 30px;
+      font-size: 35px;
       animation: floatUp 3s linear infinite;
     }
 
@@ -97,7 +98,7 @@
 
   <div class="celebration" id="celebration">
     💖 SHE SAID YESSSS 💖
-    <div style="font-size:30px; margin-top:20px;">Best Day Ever 🥹</div>
+    <div style="font-size:35px; margin-top:25px;">Best Day Ever 🥹</div>
   </div>
 
   <script>
@@ -105,8 +106,8 @@
     let noBtn = document.getElementById("noBtn");
     let celebration = document.getElementById("celebration");
 
-    let yesSize = 32;
-    let noSize = 32;
+    let yesSize = 40;
+    let noSize = 40;
 
     noBtn.addEventListener("click", function() {
       yesSize += 15;
@@ -114,16 +115,12 @@
 
       yesBtn.style.fontSize = yesSize + "px";
       noBtn.style.fontSize = noSize + "px";
-
-      console.log("They clicked NO");
     });
 
     yesBtn.addEventListener("click", function() {
-      console.log("They clicked YES");
-
       celebration.style.display = "flex";
 
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 50; i++) {
         let heart = document.createElement("div");
         heart.className = "hearts";
         heart.innerHTML = "💖";
@@ -134,15 +131,15 @@
     });
   </script>
 
-  <!-- Bottom signature -->
+  <!-- VERY BOTTOM SIGNATURE -->
   <p style="
     position: fixed;
-    bottom: 10px;
+    bottom: 5px;
     width: 100%;
     text-align: center;
     color: white;
-    font-size: 18px;
-    opacity: 0.85;
+    font-size: 22px;
+    opacity: 0.9;
     font-family: Arial, sans-serif;
   ">
     by Menushan
