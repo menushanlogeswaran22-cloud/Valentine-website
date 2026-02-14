@@ -15,7 +15,7 @@
 
     h1 {
       margin-top: 60px;
-      font-size: 85px; /* BIGGER TITLE */
+      font-size: 85px;
       color: white;
     }
 
@@ -31,13 +31,13 @@
     }
 
     button {
-      padding: 35px 90px; /* BIGGER BUTTON SIZE */
-      font-size: 40px; /* BIGGER TEXT */
+      padding: 35px 90px;
+      font-size: 40px;
       border: none;
       border-radius: 18px;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin: 30px; /* MORE SPACE BETWEEN BUTTONS */
+      margin: 30px;
     }
 
     #yesBtn {
@@ -62,14 +62,8 @@
       flex-direction: column;
       font-size: 70px;
       color: white;
-      animation: fadeIn 1s ease forwards;
       background: rgba(0,0,0,0.6);
       text-align: center;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .hearts {
@@ -89,7 +83,7 @@
 
   <h1>Will You Be My Valentine? 💖</h1>
 
-  <img src="https://share.google/images/3DU4V8YVBjolQ8m6W">
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
 
   <div class="buttons">
     <button id="yesBtn">YES 💕</button>
@@ -101,15 +95,53 @@
     <div style="font-size:35px; margin-top:25px;">Best Day Ever 🥹</div>
   </div>
 
-  <script>
+  <!-- Firebase Tracking -->
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "PASTE_YOURS",
+      authDomain: "PASTE_YOURS",
+      projectId: "PASTE_YOURS",
+      storageBucket: "PASTE_YOURS",
+      messagingSenderId: "PASTE_YOURS",
+      appId: "PASTE_YOURS"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const sessionId = Date.now().toString();
+    const sessionRef = doc(db, "sessions", sessionId);
+
+    await setDoc(sessionRef, {
+      openedAt: new Date(),
+      noClicks: 0,
+      yesClicks: 0,
+      firstClick: null
+    });
+
     let yesBtn = document.getElementById("yesBtn");
     let noBtn = document.getElementById("noBtn");
     let celebration = document.getElementById("celebration");
 
     let yesSize = 40;
     let noSize = 40;
+    let firstClickRecorded = false;
 
-    noBtn.addEventListener("click", function() {
+    noBtn.addEventListener("click", async function() {
+
+      if (!firstClickRecorded) {
+        await updateDoc(sessionRef, { firstClick: "no" });
+        firstClickRecorded = true;
+      }
+
+      await updateDoc(sessionRef, {
+        noClicks: increment(1)
+      });
+
       yesSize += 15;
       noSize -= 5;
 
@@ -117,7 +149,17 @@
       noBtn.style.fontSize = noSize + "px";
     });
 
-    yesBtn.addEventListener("click", function() {
+    yesBtn.addEventListener("click", async function() {
+
+      if (!firstClickRecorded) {
+        await updateDoc(sessionRef, { firstClick: "yes" });
+        firstClickRecorded = true;
+      }
+
+      await updateDoc(sessionRef, {
+        yesClicks: increment(1)
+      });
+
       celebration.style.display = "flex";
 
       for (let i = 0; i < 50; i++) {
@@ -129,9 +171,9 @@
         document.body.appendChild(heart);
       }
     });
+
   </script>
 
-  <!-- VERY BOTTOM SIGNATURE -->
   <p style="
     position: fixed;
     bottom: 5px;
